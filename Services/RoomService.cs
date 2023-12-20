@@ -13,9 +13,10 @@ namespace net_ita_2_checkpoint.Services
             _db = db;
         }
 
-        public Task CreateRoomAsync(CreateRoomDTO dto)
+        public async Task CreateRoomAsync(CreateRoomDTO dto)
         {
-            throw new NotImplementedException();
+
+            _db.Rooms.Add(new Entities.Room {Name = dto.Name, Type = dto.Type, People = dto.People, Price = dto.Price});
         }
 
         public Task DeleteRoomAsync(Guid id)
@@ -23,19 +24,26 @@ namespace net_ita_2_checkpoint.Services
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<RoomListDTO>> GetAllRoomsAsync()
+        public async Task<ICollection<RoomListDTO>> GetAllRoomsAsync()
         {
-            throw new NotImplementedException();
+            return _db.Rooms.Select(e => new RoomListDTO
+            {
+                Id = e.Id,
+                Name = e.Name,
+                Type = e.Type,
+                People = e.People,
+                Price = e.Price
+            }).ToList();
         }
 
         public Task<ICollection<RoomListDTO>> GetAvailableRoomsAsync(DateTime date)
         {
-            throw new NotImplementedException();
+            _db.Reservations.Where(e => e.Date == date);
         }
 
         public Task<RoomDetailDTO> GetRoomAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return _db.Rooms.Where(e => e.Id == id).FirstOrDefault();
         }
 
         public Task UpdateRoomAsync(UpdateRoomDTO dto)

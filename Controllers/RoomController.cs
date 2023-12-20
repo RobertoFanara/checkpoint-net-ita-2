@@ -1,15 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
+using net_ita_2_checkpoint.DTOs;
+using net_ita_2_checkpoint.Entities;
+using net_ita_2_checkpoint.Services.Interfaces;
 
 namespace net_ita_2_checkpoint.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RoomController
+    public class RoomController : ControllerBase
     {
+        private readonly IRoomService _roomService;
+
+        public RoomController(IRoomService roomService)
+        {
+            _roomService = roomService;
+        }
+
         [HttpGet("All")]
         public async Task<IActionResult> GetAllRoomsAsync()
         {
-            throw new NotImplementedException();
+            return Ok(await _roomService.GetAllRoomsAsync());
         }
 
         [HttpGet("Available")]
@@ -25,9 +35,11 @@ namespace net_ita_2_checkpoint.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostRoomAsync()
+        public async Task<IActionResult> PostRoomAsync([FromBody] CreateRoomDTO roomDTO)
         {
-            throw new NotImplementedException();
+            await _roomService.CreateRoomAsync(roomDTO);
+
+            return Ok(roomDTO);
         }
 
         [HttpPut]

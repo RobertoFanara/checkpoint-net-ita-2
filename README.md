@@ -7,6 +7,7 @@ Questo esercizio consiste nello sviluppo di un sistema di prenotazione alberghie
 - Creare API RESTful per gestire le prenotazioni di un hotel.
 - Implementare operazioni asincrone.
 - Utilizzare LINQ per interrogare e manipolare i dati.
+- Integrare sistema di logging su file.
 
 ## Requisiti Specifici
 
@@ -28,3 +29,6 @@ Questo esercizio consiste nello sviluppo di un sistema di prenotazione alberghie
 - Utilizzare LINQ per:
   - Filtrare le camere in base a criteri specifici (es. disponibilità, prezzo, numero di persone).
   - Ordinare le camere in base al prezzo.
+
+### Parte 4: Logging
+ - Integrare un sistema di logging che vada a scrivere le operazioni effettuate su file di testo (es. Aggiunto camera, prenotato camera, ...). 
